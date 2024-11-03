@@ -247,6 +247,16 @@ public class CreditTest {
         creditPage.fillCardPaymentForm(approvedCardNumber, validMonth, validYear, validOwnerName, emptyCode);
         creditPage.errorFormat();
     }
+    @Test
+    public void shouldCreditPaymentWithInvalidCodeCard() {
+        HomePage home = new HomePage();
+        home.homePage();
+        var creditPage = home.creditPayment();
+        var invalidCodeCard = DataHelper.getNumberCVC(0);
+        creditPage.cleanFields();
+        creditPage.fillCardPaymentForm(approvedCardNumber, validMonth, validYear, validOwnerName, invalidCodeCard);
+        creditPage.errorFormat();
+    }
 
     @Test
     public void shouldEmptyAllFieldsCreditPayment() {

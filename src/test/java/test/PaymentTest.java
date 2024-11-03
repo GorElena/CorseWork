@@ -261,4 +261,14 @@ public class PaymentTest {
         cardPage.fillCardPaymentForm(emptyCardNumber, emptyMonth, emptyYear, emptyName, emptyCode);
         cardPage.errorFormat();
     }
+    @Test
+    public void shouldCreditPaymentWithInvalidCodeCard() {
+        HomePage home = new HomePage();
+        home.homePage();
+        var cardPage = home.creditPayment();
+        var invalidCodeCard = DataHelper.getNumberCVC(0);
+        cardPage.cleanFields();
+        cardPage.fillCardPaymentForm(approvedCardNumber, validMonth, validYear, validOwnerName, invalidCodeCard);
+        cardPage.errorFormat();
+    }
 }
