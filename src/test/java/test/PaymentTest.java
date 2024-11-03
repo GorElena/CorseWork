@@ -245,6 +245,15 @@ public class PaymentTest {
         cardPage.cleanFields();
         cardPage.fillCardPaymentForm(approvedCardNumber, validMonth, validYear, validOwnerName, emptyCode);
         cardPage.errorFormat();
+    }@Test
+    public void shouldPaymentWithInvalidCodeCard() {
+        HomePage home = new HomePage();
+        home.homePage();
+        var cardPage = home.creditPayment();
+        var invalidCodeCard = DataHelper.getNumberCVC(0);
+        cardPage.cleanFields();
+        cardPage.fillCardPaymentForm(approvedCardNumber, validMonth, validYear, validOwnerName, invalidCodeCard);
+        cardPage.errorFormat();
     }
 
     @Test
@@ -260,15 +269,7 @@ public class PaymentTest {
         cardPage.cleanFields();
         cardPage.fillCardPaymentForm(emptyCardNumber, emptyMonth, emptyYear, emptyName, emptyCode);
         cardPage.errorFormat();
-    }
-    @Test
-    public void shouldCreditPaymentWithInvalidCodeCard() {
-        HomePage home = new HomePage();
-        home.homePage();
-        var cardPage = home.creditPayment();
-        var invalidCodeCard = DataHelper.getNumberCVC(0);
-        cardPage.cleanFields();
-        cardPage.fillCardPaymentForm(approvedCardNumber, validMonth, validYear, validOwnerName, invalidCodeCard);
-        cardPage.errorFormat();
+
+
     }
 }
